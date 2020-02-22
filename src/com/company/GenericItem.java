@@ -36,4 +36,9 @@ public class GenericItem {
     public String toString() {
         return "ID: " + id + "; Name: " + name + "; Price: " + price + " moneys; Category: " + category;
     }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
 }

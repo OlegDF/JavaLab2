@@ -35,4 +35,9 @@ public class TechnicalItem extends GenericItem {
     public String toString() {
         return super.toString() + "\nWarranty ends in " + warrantyTime + " days";
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

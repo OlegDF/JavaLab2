@@ -37,6 +37,12 @@ public class FoodItem extends GenericItem {
 
     @Override
     public String toString() {
-        return super.toString() + "\nnDate of Income: " + dateOfIncome + "; Expires in " + expires + " days";
+        return super.toString() + "\nDate of Income: " + dateOfIncome + "; Expires in " + expires + " days";
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
 }
