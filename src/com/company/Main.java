@@ -21,9 +21,8 @@ public class Main {
         item1.printAll();
         item2.printAll();
         item3.printAll();
-        FoodItem item4 = new FoodItem();
+        FoodItem item4 = new FoodItem("Flesh of the Innocents");
         item4.id = 3;
-        item4.name = "Flesh of the Innocents";
         item4.price = 10;
         Calendar calendar = Calendar.getInstance();
         calendar.set(1666, Calendar.JUNE, 6);
@@ -36,9 +35,8 @@ public class Main {
         item5.warrantyTime = 4;
         item4.printAll();
         item5.printAll();
-        FoodItem item4_copy = new FoodItem();
+        FoodItem item4_copy = new FoodItem("Flesh of the Innocents");
         item4_copy.id = 5;
-        item4_copy.name = "Flesh of the Innocents";
         item4_copy.price = 10;
         System.out.println(item4.equals(item4_copy));
         FoodItem item4_real_copy = null;
@@ -48,5 +46,9 @@ public class Main {
             e.printStackTrace();
         }
         System.out.println(item4.equals(item4_real_copy));
+        String line = "Конфеты 'Маска';45;120";
+        String[] itemFld = line.split(";");
+        FoodItem newItem = new FoodItem(itemFld[0], Float.valueOf(itemFld[1]), Short.valueOf(itemFld[2]));
+        newItem.printAll();
     }
 }

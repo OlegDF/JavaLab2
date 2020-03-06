@@ -21,7 +21,7 @@ public class TechnicalItem extends GenericItem {
     }
 
     public boolean equals(TechnicalItem obj) {
-        return super.equals(obj);
+        return super.equals(obj) && obj.warrantyTime == warrantyTime;
     }
 
     @Override
@@ -38,6 +38,6 @@ public class TechnicalItem extends GenericItem {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return super.hashCode() * 31 + warrantyTime;
     }
 }

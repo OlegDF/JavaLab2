@@ -7,13 +7,24 @@ public class FoodItem extends GenericItem {
     Date dateOfIncome;
     short expires;
 
-    public FoodItem() {}
+    public FoodItem(String name, float price, FoodItem relatedItem, Date date, short expires) {
+        super(name, price, relatedItem);
+        super.category = Category.FOOD;
+        this.dateOfIncome = date;
+        this.expires = expires;
+    }
+
+    public FoodItem(String name, float price, short expires) {
+        this(name, price, null, new Date(), expires);
+    }
+
+    public FoodItem(String name) {
+        this(name, 0, (short)0);
+    }
 
     private FoodItem(GenericItem item) {
+        super(item.name, item.price, item.category);
         this.id = item.id;
-        this.name = item.name;
-        this.price = item.price;
-        this.category = item.category;
         this.relatedItem = item.relatedItem;
     }
 
@@ -24,7 +35,7 @@ public class FoodItem extends GenericItem {
     }
 
     public boolean equals(FoodItem obj) {
-        return super.equals(obj);
+        return super.equals(obj) && obj.dateOfIncome.equals(dateOfIncome) && obj.expires == expires;
     }
 
     @Override
@@ -42,7 +53,7 @@ public class FoodItem extends GenericItem {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return (super.hashCode() * 31 + (name == null ? 0 : name.hashCode())) * 31 + expires;
     }
 
 }
