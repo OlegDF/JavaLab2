@@ -1,23 +1,31 @@
-package com.company;
+package com.company.billing.stocklist;
 
 public class TechnicalItem extends GenericItem {
 
-    short warrantyTime;
+    private short warrantyTime;
 
     public TechnicalItem() {}
 
+    public TechnicalItem(String name, float price, TechnicalItem relatedItem, short warrantyTime) {
+        super(name, price, relatedItem);
+        super.setCategory(Category.GENERAL);
+        this.warrantyTime = warrantyTime;
+    }
+
     private TechnicalItem(GenericItem item) {
-        this.id = item.id;
-        this.name = item.name;
-        this.price = item.price;
-        this.category = item.category;
-        this.relatedItem = item.relatedItem;
+        super(item.getName(), item.getPrice(), item.getCategory());
+        this.setId(item.getId());
+        this.setRelatedItem(item.getRelatedItem());
     }
 
     @Override
-    void printAll() {
+    public void printAll() {
         super.printAll();
         System.out.println("Warranty ends in " + warrantyTime + " days");
+    }
+
+    public short getWarrantyTime() {
+        return warrantyTime;
     }
 
     public boolean equals(TechnicalItem obj) {
@@ -25,7 +33,7 @@ public class TechnicalItem extends GenericItem {
     }
 
     @Override
-    protected TechnicalItem clone() throws CloneNotSupportedException {
+    public TechnicalItem clone() throws CloneNotSupportedException {
         TechnicalItem clone = new TechnicalItem(super.clone());
         clone.warrantyTime = warrantyTime;
         return clone;

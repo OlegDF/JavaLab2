@@ -1,14 +1,14 @@
-package com.company;
+package com.company.billing.stocklist;
 
 public class GenericItem {
 
-    static int currentID = 0;
+    private static int currentID = 0;
 
-    public int id;
-    public String name;
-    public float price;
-    public GenericItem relatedItem;
-    public Category category;
+    private int id;
+    private String name;
+    private float price;
+    private GenericItem relatedItem;
+    private Category category;
 
     public GenericItem(String name, float price, Category category) {
         this.id = currentID++;
@@ -28,7 +28,39 @@ public class GenericItem {
         this(null, 0, Category.GENERAL);
     }
 
-    void printAll() {
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public GenericItem getRelatedItem() {
+        return relatedItem;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setRelatedItem(GenericItem relatedItem) {
+        this.relatedItem = relatedItem;
+    }
+
+    public void printAll() {
         System.out.println("ID: " + id + "; Name: " + name + "; Price: " + price + " moneys; Category: " + category);
     }
 
@@ -40,7 +72,7 @@ public class GenericItem {
     }
 
     @Override
-    protected GenericItem clone() throws CloneNotSupportedException {
+    public GenericItem clone() throws CloneNotSupportedException {
         GenericItem clone = new GenericItem();
         clone.id = id;
         clone.name = name;
@@ -64,4 +96,5 @@ public class GenericItem {
         hash = 31 * hash + (category == null ? 0 : category.hashCode());
         return hash;
     }
+
 }

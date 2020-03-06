@@ -1,15 +1,15 @@
-package com.company;
+package com.company.billing.stocklist;
 
 import java.util.Date;
 
 public class FoodItem extends GenericItem {
 
-    Date dateOfIncome;
-    short expires;
+    private Date dateOfIncome;
+    private short expires;
 
     public FoodItem(String name, float price, FoodItem relatedItem, Date date, short expires) {
         super(name, price, relatedItem);
-        super.category = Category.FOOD;
+        super.setCategory(Category.FOOD);
         this.dateOfIncome = date;
         this.expires = expires;
     }
@@ -23,13 +23,21 @@ public class FoodItem extends GenericItem {
     }
 
     private FoodItem(GenericItem item) {
-        super(item.name, item.price, item.category);
-        this.id = item.id;
-        this.relatedItem = item.relatedItem;
+        super(item.getName(), item.getPrice(), item.getCategory());
+        this.setId(item.getId());
+        this.setRelatedItem(item.getRelatedItem());
+    }
+
+    public Date getDateOfIncome() {
+        return dateOfIncome;
+    }
+
+    public short getExpires() {
+        return expires;
     }
 
     @Override
-    void printAll() {
+    public void printAll() {
         super.printAll();
         System.out.println("Date of Income: " + dateOfIncome + "; Expires in " + expires + " days");
     }
@@ -39,7 +47,7 @@ public class FoodItem extends GenericItem {
     }
 
     @Override
-    protected FoodItem clone() throws CloneNotSupportedException {
+    public FoodItem clone() throws CloneNotSupportedException {
         FoodItem clone = new FoodItem(super.clone());
         clone.dateOfIncome = dateOfIncome;
         clone.expires = expires;
@@ -53,7 +61,7 @@ public class FoodItem extends GenericItem {
 
     @Override
     public int hashCode() {
-        return (super.hashCode() * 31 + (name == null ? 0 : name.hashCode())) * 31 + expires;
+        return (super.hashCode() * 31 + (getName() == null ? 0 : getName().hashCode())) * 31 + expires;
     }
 
 }
